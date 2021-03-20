@@ -26,8 +26,8 @@ const Test = require('../Models/Test.model');
     let stream = fs.createReadStream('../Resources/sampleData.csv')
       .on("error", reject)
       .on("data", async data => {
-        // Parse Data into seperate arrays
-        let newData = data.toString().split("\n");
+        // Parse Data into seperate arrays, removing header fields
+        let newData = data.toString().split("\n").slice(1, data.length);
 
         // Iterate over every Data entry
         newData.forEach((entry) => {
